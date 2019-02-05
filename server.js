@@ -1,5 +1,5 @@
 var express = require("express");
-// var bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
 const path = require('path');
 var mongodb = require("mongodb");
 var mongoXlsx = require('mongo-xlsx');
@@ -11,10 +11,13 @@ let db,
 	  dataIns = [];
 
 app.use(express.static(path.join(__dirname, './dist/calc-ng')));
+app.use(bodyParser.json());
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname + './dist/calc-ng/index.html'));
 });
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080, function(){
+  console.log(process.env.MONGODB_URI);
+});
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function (err, client) {
   if (err) {
@@ -40,4 +43,4 @@ function convert() {
       fs.writeFileSync('./dist/calc-ng/assets/test.json', json);
   });
 };
-convert();
+// convert();
