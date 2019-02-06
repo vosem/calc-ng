@@ -8,7 +8,7 @@ var fs = require('fs');
 const app = express();
 let db,
 	  collection,
-	  dataIns = [];
+	  dataIns = [{a: 'a'}];
 
 app.use(express.static(path.join(__dirname, './dist/calc-ng')));
 app.use(bodyParser.json());
@@ -38,7 +38,7 @@ function saveData (db) {
 
 function convert() {
   mongoXlsx.xlsx2MongoData("./dist/calc-ng/assets/Ladies.xlsx", null, function(err, mongoData) {
-    dataIns = mongoData;
+    if (mongoData) { dataIns = mongoData; }
       var json = JSON.stringify(mongoData); //convert it back to json
       fs.writeFileSync('./dist/calc-ng/assets/test.json', json);
   });
