@@ -19,15 +19,15 @@ app.listen(process.env.PORT || 8080, function(){
   console.log(process.env.MONGODB_URI);
 });
 
-mongodb.MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function (err, client) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
-  db = client.db();
-  collection = db.collection('ladies-insurance');
-  saveData();
-});
+// mongodb.MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function (err, client) {
+//   if (err) {
+//     console.log(err);
+//     process.exit(1);
+//   }
+//   db = client.db();
+//   collection = db.collection('ladies-insurance');
+//   saveData();
+// });
 
 function saveData (db) {
   	for(let i of dataIns){
