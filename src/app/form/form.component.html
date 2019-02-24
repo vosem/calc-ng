@@ -8,31 +8,29 @@
 				<label for="name">Name</label>
 				<input type="text" class="form-control" id="name"
 				required
-				[(ngModel)]="model.name" name="name"
-				#spy
-				/>
+				[(ngModel)]="model.name" name="name">
 			</div>
 			<div class="form-group">
 				<label for="sex">Sex</label>
-				<select class="form-control" id="sex" required>
-					<option *ngFor="let s of sex" [value]="sex">{{s}}</option>
+				<select class="form-control" id="sex"
+				required
+				[(ngModel)]="model.sex" name="sex">
+					<option *ngFor="let s of sex" [value]="s">{{s}}</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="name">Age</label>
+				<label for="age">Age</label>
 				<input type="text" class="form-control" id="age"
 				required
-				[(ngModel)]="model.age" name="age"
-				/>
+				[(ngModel)]="model.age" name="age">
 			</div>
 			<div class="form-group">
-				<label for="alterEgo">Term</label>
+				<label for="term">Term</label>
 				<input type="text" class="form-control" id="term"
 				required
-				[(ngModel)]="model.term" name="term"
-				/>
+				[(ngModel)]="model.term" name="term">
 			</div>
-			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid">Submit</button>
+			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant();">Submit</button>
 		</form>
 	</div>
 </div>

@@ -8,24 +8,28 @@ import { SendDataService } from "../send-data.service";
   styleUrls: ["./form.component.scss"]
 })
 export class FormComponent {
-  sex = ["Masculine", "Feminine"];
+  sex = ['Masculine', 'Feminine'];
 
-  // model = new Insurant("Hello", this.sex[0], 18, 32);
-  model : Insurant = {
-    name: 'Hello',
-    sex: this.sex[0],
-    age: 18,
-    term: 32
-  };
+  model = new Insurant("Hello", this.sex[0], 18, 32);
+  // model : Insurant = {
+  //   name: 'Hello',
+  //   sex: this.sex[0],
+  //   age: 18,
+  //   term: 32
+  // };
 
   submitted = false;
 
   onSubmit() {
     this.submitted = true;
 
-    let dataToSend = JSON.stringify(this.model);
-        console.log(dataToSend);
-        return dataToSend;
+    // let dataToSend = JSON.stringify(this.model);
+    //     console.log(dataToSend);
+    //     return dataToSend;
+  }
+
+  newInsurant() {
+    this.model = new Insurant("Hello", this.sex[0], 18, 32);
   }
 
   // TODO: Remove this when we're done
