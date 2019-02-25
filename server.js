@@ -15,13 +15,24 @@ app.use(bodyParser.json());
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname + './dist/calc-ng/index.html'));
 });
+app.listen(process.env.PORT || 8080);
 
-let saveData = db => {
-  	for(let i of dataIns){
-		console.log(i);
-		collection.insertOne(i);
-	}
-};
+
+
+
+
+
+
+
+
+
+
+// let saveData = db => {
+//   	for(let i of dataIns){
+// 		console.log(i);
+// 		collection.insertOne(i);
+// 	}
+// };
 
 let convert = () => {
   mongoXlsx.xlsx2MongoData("./dist/calc-ng/assets/Ladies.xlsx", null, function(err, mongoData) {
@@ -31,8 +42,6 @@ let convert = () => {
   });
 };
 // convert();
-
-app.listen(process.env.PORT || 8080);
 
 // mongodb.MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function (err, client) {
 //   if (err) {

@@ -11,9 +11,14 @@ import { Insurant } from '../insurant';
 export class ResultComponent implements OnInit {
   insurant : Insurant;
   constructor(private sendDataService: SendDataService) { }
-
+      showInsurant() {
+      this.sendDataService.getInsurant()
+      .subscribe((data: Insurant) => this.insurant = { ...data });
+    }
   ngOnInit() {
-    this.sendDataService.getData().subscribe((data:Insurant) => this.insurant=data);
+    // this.sendDataService.getData().subscribe((data:Insurant) => this.insurant=data);
+this.showInsurant();
   }
+
 
 }
