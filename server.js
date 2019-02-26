@@ -16,8 +16,30 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname + './dist/calc-ng/index.html'));
 });
 app.listen(process.env.PORT || 8080);
+console.log('Calc-ng is running');
 
+app.post('/submit', function(req, res) {
 
+  var receivedData = req.body;
+    console.log(receivedData);
+    console.log(typeof(receivedData));
+
+  //   var receivedUrl = req.body.url;
+  //   var receivedModel = req.body.model;
+
+  // //working with Mongo
+  // var List = require('./db/list').List;
+  // var list = new List(receivedData);
+  // list.save(function (err) {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       console.log('Ok');
+  //     }
+  // });
+
+  res.end(JSON.stringify('100'));
+});
 
 
 

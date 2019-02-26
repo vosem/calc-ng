@@ -30,7 +30,7 @@
 				required
 				[(ngModel)]="model.term" name="term">
 			</div>
-			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant();">Submit</button>
+			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant(); transferInsurant();">Submit</button>
 		</form>
 	</div>
 </div>

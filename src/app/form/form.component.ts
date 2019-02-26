@@ -1,35 +1,36 @@
 import { Component, OnInit } from "@angular/core";
 import { Insurant } from "../insurant";
-import { SendDataService } from "../send-data.service";
+import { SendDataService } from '../send-data.service';
 
 @Component({
   selector: "app-form",
   templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.scss"]
+  styleUrls: ["./form.component.scss"],
+  providers: [SendDataService]
 })
 export class FormComponent {
+
+  constructor(private sendDataService: SendDataService) { }
   sex = ['Masculine', 'Feminine'];
 
   model = new Insurant("Hello", this.sex[0], 18, 32);
-  // model : Insurant = {
-  //   name: 'Hello',
-  //   sex: this.sex[0],
-  //   age: 18,
-  //   term: 32
-  // };
 
   submitted = false;
 
+
   onSubmit() {
     this.submitted = true;
-
-    // let dataToSend = JSON.stringify(this.model);
-    //     console.log(dataToSend);
-    //     return dataToSend;
   }
 
   newInsurant() {
-    this.model = new Insurant("Hello", this.sex[0], 18, 32);
+    // this.model = new Insurant("Good-Buy", this.sex[1], 30, 20);
+    console.log(this.model);
+    return JSON.stringify(this.model);
+  }
+
+  transferInsurant(){
+    this.sendDataService.sendInsurant(this.model)
+    .subscribe((data: Insurant) => this.model = { ...data });
   }
 
   // TODO: Remove this when we're done
