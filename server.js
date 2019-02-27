@@ -18,14 +18,36 @@ app.get('/*', (req, res) => {
 app.listen(process.env.PORT || 8080);
 console.log('Calc-ng is running');
 
+mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://heroku_37j513mk:m063djag2fgn36smckkh9s78do@ds145694.mlab.com:45694/heroku_37j513mk', { useNewUrlParser: true }, function (err, client) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+  db = client.db();
+  collection = db.collection('ladies-insurance');
+  // show dbs;
+  // console.log(collection);
+  // collection.insertOne({x: 1});
+  var temp = collection.find({ Age: 3 }).toArray(function (err, items) {
+                    console.log(items);
+                   // res.send(items);
+                });
+
+  console.log(temp);
+  // saveData();
+});
+
+
 app.post('/submit', function(req, res) {
 
-  var receivedData = req.body;
-    console.log(receivedData);
-    console.log(typeof(receivedData));
+  let receivedData = req.body;
+  console.log(receivedData);
+  console.log(typeof(receivedData));
 
-  //   var receivedUrl = req.body.url;
-  //   var receivedModel = req.body.model;
+  let receivedAge = req.body.age;
+  let receivedTerm = req.body.term;
+
+  // console.log(collection.find());
 
   // //working with Mongo
   // var List = require('./db/list').List;
@@ -38,7 +60,7 @@ app.post('/submit', function(req, res) {
   //     }
   // });
 
-  res.end(JSON.stringify('100'));
+  res.end(JSON.stringify('10000000'));
 });
 
 
@@ -52,7 +74,7 @@ app.post('/submit', function(req, res) {
 // let saveData = db => {
 //   	for(let i of dataIns){
 // 		console.log(i);
-// 		collection.insertOne(i);
+// 		collection.insertOne('a');
 // 	}
 // };
 
@@ -65,12 +87,3 @@ let convert = () => {
 };
 // convert();
 
-// mongodb.MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function (err, client) {
-//   if (err) {
-//     console.log(err);
-//     process.exit(1);
-//   }
-//   db = client.db();
-//   collection = db.collection('ladies-insurance');
-//   saveData();
-// });
