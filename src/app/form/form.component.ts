@@ -29,7 +29,7 @@ export class FormComponent {
   }
 
   transferInsurant(){
-    this.sendDataService.sendInsurant(this.model)
+    return this.sendDataService.sendInsurant(this.model)
     .subscribe((data: Insurant) => this.model = { ...data });
   }
 

@@ -28,14 +28,13 @@ export class SendDataService {
   }
 
   sendInsurant (insurant: Insurant): Observable<Insurant> {
-    this.http.post<Insurant>(this.postUrl, insurant, httpOptions)
-      .subscribe(data => {
+    let sumRequest = this.http.post<Insurant>(this.postUrl, insurant, httpOptions);
+    sumRequest.subscribe(data => {
         console.log(data); // response from server
         console.log(typeof data);
         this.sum = +data;
         console.log(this.sum);
       });
-    return this.http.post<Insurant>(this.postUrl, insurant, httpOptions);   // this results in doubling of observables
+    return sumRequest;   // this results in doubling of observables
   }
-
 }

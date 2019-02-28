@@ -25,15 +25,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://heroku_37j513m
   }
   db = client.db();
   collection = db.collection('ladies-insurance');
-  // show dbs;
-  // console.log(collection);
-  // collection.insertOne({x: 1});
-  var temp = collection.find({ Age: 3 }).toArray(function (err, items) {
-                    console.log(items);
-                   // res.send(items);
-                });
-
-  console.log(temp);
   // saveData();
 });
 
@@ -42,25 +33,23 @@ app.post('/submit', function(req, res) {
 
   let receivedData = req.body;
   console.log(receivedData);
-  console.log(typeof(receivedData));
 
-  let receivedAge = req.body.age;
-  let receivedTerm = req.body.term;
+  let age = 'Age',
+      receivedAge = +receivedData.age,
+      query = {};
+  query[age] = receivedAge;
 
-  // console.log(collection.find());
+  let receivedTerm = +receivedData.term,
+      projection = {};
+  projection[receivedTerm] = 1;
+  projection['_id'] = 0;
 
-  // //working with Mongo
-  // var List = require('./db/list').List;
-  // var list = new List(receivedData);
-  // list.save(function (err) {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       console.log('Ok');
-  //     }
-  // });
+  let sum = 0;
 
-  res.end(JSON.stringify('10000000'));
+  collection.find(query).project( projection).toArray(function (err, items) {
+    sum = +items[0][receivedTerm];
+    res.end(JSON.stringify(sum));
+  });
 });
 
 
