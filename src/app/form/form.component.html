@@ -30,7 +30,9 @@
 				required
 				[(ngModel)]="model.term" name="term">
 			</div>
-			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant(); transferInsurant();">Submit</button>
+			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant(); transferInsurant(); getSum(); showSum();">Submit</button>
 		</form>
+		{{sum}}
 	</div>
+	<app-result [sum]="sum"></app-result>
 </div>

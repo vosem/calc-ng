@@ -12,6 +12,7 @@ export class FormComponent {
 
   constructor(private sendDataService: SendDataService) { }
   sex = ['Masculine', 'Feminine'];
+  sum : number;
 
   model = new Insurant("Hello", this.sex[0], 18, 32);
 
@@ -23,7 +24,6 @@ export class FormComponent {
   }
 
   newInsurant() {
-    // this.model = new Insurant("Good-Buy", this.sex[1], 30, 20);
     console.log(this.model);
     return JSON.stringify(this.model);
   }
@@ -31,6 +31,21 @@ export class FormComponent {
   transferInsurant(){
     return this.sendDataService.sendInsurant(this.model)
     .subscribe((data: Insurant) => this.model = { ...data });
+  }
+
+  getSum(){
+    return this.sendDataService.sendInsurant(this.model)
+    .subscribe(data => {
+        console.log(data); // response from server
+        console.log(typeof data);
+        this.sum = +data;
+        console.log(this.sum);
+      });
+  }
+  showSum(){
+    let result = document.getElementsByClassName("result")[0];
+    result.classList.add('shown');
+    console.log(result);
   }
 
   // TODO: Remove this when we're done

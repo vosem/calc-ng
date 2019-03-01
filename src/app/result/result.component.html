@@ -1,12 +1,14 @@
-<div class="container">
-	<h2>Result 1 - data, got out of json file from the server</h2>
+<div class="result container">
 	<div class="row justify-content-center">
+		<div class="message align-self-center col-7">
+<!-- 		<h2">Data, got out of json file from the server</h2>
+		<div class="row justify-content-center">
 			{{insurant?.name}} : {{insurant?.sex}} : {{insurant?.age}} : {{insurant?.term}}
+		</div> -->
+		<h2>Your Insurance Amount:</h2>
+		<div class="sum">
+			{{sum}}
+		</div>
 	</div>
-	<h2>Result 2 - answer from the server</h2>
-				
-	<div class="row justify-content-center">
-		<button type="button" class="btn btn-secondary" (click)="showSum();">Get Sum</button>
-		{{sum}}
-	</div>
+</div>
 </div>
