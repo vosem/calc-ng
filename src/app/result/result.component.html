@@ -5,10 +5,15 @@
 		<div class="row justify-content-center">
 			{{insurant?.name}} : {{insurant?.sex}} : {{insurant?.age}} : {{insurant?.term}}
 		</div> -->
-		<h2>Your Insurance Amount:</h2>
+		<h2>Yearly Premium:</h2>
+		<div class="sum">
+			{{premium}}
+		</div>
+		<h2>Insurance Amount:</h2>
 		<div class="sum">
 			{{sum}}
 		</div>
+		<button type="button" class="btn btn-secondary" (click)="hideResult();">x</button>
 	</div>
 </div>
 </div>

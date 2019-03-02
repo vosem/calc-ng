@@ -3,7 +3,8 @@ export class Insurant {
     public name: string,
     public sex: string,
     public age: number,
-    public term: number
+    public term: number,
+    public premium: number
   ) {  }
 }
 

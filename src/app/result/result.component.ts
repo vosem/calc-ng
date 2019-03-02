@@ -13,10 +13,12 @@ export class ResultComponent implements OnInit {
   insurant : Insurant; // this was getting data from '../insurant'
   // sum : string = '0';
   @Input() sum: number; // this is getting data from formComponent
+  @Input() premium: number; // this is getting data from formComponent
+  
 
   constructor(private sendDataService: SendDataService,
     private formComponent: FormComponent) {
-    // this.sum = this.sendDataService.sum;
+    this.premium = this.formComponent.model.premium;
   }
   
   showInsurant() {
@@ -24,9 +26,13 @@ export class ResultComponent implements OnInit {
     .subscribe((data: Insurant) => this.insurant = { ...data });
   }
 
+  hideResult() {
+    let result = document.getElementsByClassName("result")[0];
+    result.classList.remove('shown');
+  }
+
   ngOnInit() {
     this.showInsurant();
-    // this.showSum();
   }
 
 }

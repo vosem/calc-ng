@@ -14,7 +14,7 @@ export class FormComponent {
   sex = ['Masculine', 'Feminine'];
   sum : number;
 
-  model = new Insurant("Hello", this.sex[0], 18, 32);
+  model = new Insurant("Hello", this.sex[0], 18, 32, 1000);
 
   submitted = false;
 

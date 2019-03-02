@@ -30,6 +30,12 @@
 				required
 				[(ngModel)]="model.term" name="term">
 			</div>
+			<div class="form-group">
+				<label for="premium">Term</label>
+				<input type="text" class="form-control" id="premium"
+				required
+				[(ngModel)]="model.premium" name="premium">
+			</div>
 			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant(); transferInsurant(); getSum(); showSum();">Submit</button>
 		</form>
 		{{sum}}

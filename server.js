@@ -8,6 +8,7 @@ const fs = require('fs');
 const app = express();
 let db,
 	  collection,
+    insuranceCollection,
 	  dataIns = [];
 
 app.use(express.static(path.join(__dirname, './dist/calc-ng')));
@@ -25,7 +26,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://heroku_37j513m
   }
   db = client.db();
   collection = db.collection('ladies-insurance');
-  // saveData();
+  insuranceCollection = db.collection('insurance');
+  // saveData(db);
 });
 
 
@@ -36,8 +38,14 @@ app.post('/submit', function(req, res) {
 
   let age = 'Age',
       receivedAge = +receivedData.age,
+      sex = 'Sex',
+      receivedSex = '', // masculine => m, feminine => f
       query = {};
+      if(receivedData.sex === 'Masculine') {
+        receivedSex = 'm';
+      } else { receivedSex = 'f'; }
   query[age] = receivedAge;
+  query[sex] = receivedSex;
 
   let receivedTerm = +receivedData.term,
       projection = {};
@@ -46,7 +54,7 @@ app.post('/submit', function(req, res) {
 
   let sum = 0;
 
-  collection.find(query).project( projection).toArray(function (err, items) {
+  insuranceCollection.find(query).project(projection).toArray(function (err, items) {
     sum = +items[0][receivedTerm];
     res.end(JSON.stringify(sum));
   });
@@ -55,23 +63,19 @@ app.post('/submit', function(req, res) {
 
 
 
-
-
-
-
-
-// let saveData = db => {
-//   	for(let i of dataIns){
-// 		console.log(i);
-// 		collection.insertOne('a');
-// 	}
-// };
+// Converting data from xlsx and saving them to mongo
+let saveData = db => {
+  	for(let i of dataIns){
+		console.log(i);
+		insuranceCollection.insertOne(i);
+	}
+};
 
 let convert = () => {
-  mongoXlsx.xlsx2MongoData("./dist/calc-ng/assets/Ladies.xlsx", null, function(err, mongoData) {
+  mongoXlsx.xlsx2MongoData("./dist/calc-ng/assets/VS_women.xlsx", null, function(err, mongoData) {
     if (mongoData) { dataIns = mongoData; }
       let json = JSON.stringify(mongoData);
-      fs.writeFileSync('./dist/calc-ng/assets/test.json', json);
+      fs.writeFileSync('./dist/calc-ng/assets/insurance.json', json);
   });
 };
 // convert();
