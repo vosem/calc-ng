@@ -12,18 +12,23 @@ import { Insurant } from '../insurant';
 export class ResultComponent implements OnInit {
   insurant : Insurant; // this was getting data from '../insurant'
   // sum : string = '0';
-  @Input() sum: number; // this is getting data from formComponent
+  @Input() sum; // this is getting data from formComponent
+  @Input() term: number; // this is getting data from formComponent
   @Input() premium: number; // this is getting data from formComponent
-  
+ 
 
   constructor(private sendDataService: SendDataService,
     private formComponent: FormComponent) {
     this.premium = this.formComponent.model.premium;
+    this.term = this.formComponent.model.term;
   }
   
   showInsurant() {
     this.sendDataService.getInsurant()
-    .subscribe((data: Insurant) => this.insurant = { ...data });
+    .subscribe((data: Insurant) => {
+      this.insurant = { ...data };
+      // if (this.sum == null) { this.sum = 'Please try shorter term'};
+    });
   }
 
   hideResult() {

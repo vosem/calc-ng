@@ -10,18 +10,18 @@
 
 	.message {
 		position: relative;
-		margin-top: 25vh;
-		height: 250px;
+		margin-top: 15vh;
+		padding-bottom: 5vh;
 		border-radius: 10px;
 		box-shadow: 0 0 10px grey;
 		background-color: white;
 		text-align: center;
 	}
 	h2 {
-		margin-top: 8vh;
+		margin-top: 5vh;
 		color: rgb(237, 28, 36);
 	}
-	.sum {
+	.output {
 		margin-top: 5vh;
 		color: grey;
 		font-size: 42px;

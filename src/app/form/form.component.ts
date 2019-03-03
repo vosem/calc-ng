@@ -12,7 +12,7 @@ export class FormComponent {
 
   constructor(private sendDataService: SendDataService) { }
   sex = ['Masculine', 'Feminine'];
-  sum : number;
+  sum;
 
   model = new Insurant("Hello", this.sex[0], 18, 32, 1000);
 
@@ -34,12 +34,20 @@ export class FormComponent {
   }
 
   getSum(){
+    let premium = this.model.premium;
     return this.sendDataService.sendInsurant(this.model)
     .subscribe(data => {
         console.log(data); // response from server
         console.log(typeof data);
-        this.sum = +data;
+        console.log(premium);
+        console.log(typeof premium);
+        if(data == null) {
+          this.sum = 'Please try shorter term!'
+        } else {
+          this.sum = Math.round(premium/+data);
+        }
         console.log(this.sum);
+        this.showSum();
       });
   }
   showSum(){

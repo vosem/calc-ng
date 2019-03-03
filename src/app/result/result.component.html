@@ -1,19 +1,25 @@
 <div class="result container">
 	<div class="row justify-content-center">
-		<div class="message align-self-center col-7">
-<!-- 		<h2">Data, got out of json file from the server</h2>
-		<div class="row justify-content-center">
-			{{insurant?.name}} : {{insurant?.sex}} : {{insurant?.age}} : {{insurant?.term}}
-		</div> -->
-		<h2>Yearly Premium:</h2>
-		<div class="sum">
-			{{premium}}
+		<div class="message align-self-center row col-8">
+			<!-- 		<h2">Data, got out of json file from the server</h2>
+			<div class="row justify-content-center">
+				{{insurant?.name}} : {{insurant?.sex}} : {{insurant?.age}} : {{insurant?.term}}
+			</div> -->
+			<div class="result-headers row">
+				<h2 class="col-sm">Yearly Premium:</h2>
+				<h2 class="col-sm">Term of Insurance:</h2>
+				<h2 class="col-sm">Insurance Amount:</h2>
+			</div>
+				<span class="output col-sm align-self-center">
+					{{premium}}
+				</span>
+				<span class="output col-sm align-self-center">
+					{{term}}
+				</span>
+				<span class="output col-sm align-self-center">
+					{{sum}}
+				</span>
+			<button type="button" class="btn btn-secondary" (click)="hideResult();">x</button>
 		</div>
-		<h2>Insurance Amount:</h2>
-		<div class="sum">
-			{{sum}}
-		</div>
-		<button type="button" class="btn btn-secondary" (click)="hideResult();">x</button>
 	</div>
-</div>
 </div>

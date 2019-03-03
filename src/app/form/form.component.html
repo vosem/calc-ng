@@ -1,9 +1,8 @@
 <div class="container">
 	<h2>Insurant's data</h2>
 	<div class="row justify-content-center">
-		
 		<form class="col-lg-6 align-self-center" (ngSubmit)="onSubmit()" #form="ngForm">
-			{{diagnostic}}
+			<!-- {{diagnostic}} -->
 			<div class="form-group">
 				<label for="name">Name</label>
 				<input type="text" class="form-control" id="name"
@@ -31,14 +30,14 @@
 				[(ngModel)]="model.term" name="term">
 			</div>
 			<div class="form-group">
-				<label for="premium">Term</label>
+				<label for="premium">Premium</label>
 				<input type="text" class="form-control" id="premium"
 				required
 				[(ngModel)]="model.premium" name="premium">
 			</div>
-			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant(); transferInsurant(); getSum(); showSum();">Submit</button>
+			<button type="submit" class="btn btn-secondary" [disabled]="!form.form.valid" (click)="newInsurant(); transferInsurant(); getSum(); ">Submit</button>
 		</form>
-		{{sum}}
+		<!-- {{sum}} -->
 	</div>
 	<app-result [sum]="sum"></app-result>
 </div>
